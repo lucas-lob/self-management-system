@@ -1,1 +1,20 @@
+@import "tailwindcss";
 
+:root {
+    background-color: var(--color-background);
+}
+
+@theme {
+  --color-primary: #3F4A3C;
+  --color-secundary: #799973;
+  --color-tertiary: #9D6E1E;
+
+  --color-on-primary: #F6FFF4;
+  --color-on-secundary: #E4F0E1;
+  --color-on-tertiary: #FFD885;
+
+  --color-background: #EFFDEC;
+  --color-on-brackground: #BDD8B8;
+
+  --font-autour-one: "Autour One", sans;
+}

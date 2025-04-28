@@ -1,15 +1,2 @@
-:root {
-  --primaryColor: #3F4A3C;
-  --secundaryColor: #799973;
-  --tertiaryColor: #9D6E1E;
 
-  --onPrimaryColor: #F6FFF4;
-  --onSecundaryColor: #E4F0E1;
-  --onTertiaryColor: #FFD885;
-
-  --backgroundColor: #EFFDEC;
-  --onBrackgroundColor: #BDD8B8;
-
-  background-color: var(--backgroundColor);
-}
 
