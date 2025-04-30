@@ -2,6 +2,7 @@
 
 :root {
     background-color: var(--color-background);
+    font-family: var(--font-autour-one);
 }
 
 @theme {
@@ -11,10 +12,14 @@
 
   --color-on-primary: #F6FFF4;
   --color-on-secundary: #E4F0E1;
-  --color-on-tertiary: #FFD885;
+  --color-on-tertiary: #FFF4DB;
 
   --color-background: #EFFDEC;
   --color-on-brackground: #BDD8B8;
 
   --font-autour-one: "Autour One", sans;
+
+  --text-big: 1.875rem;
+  --text-medium: 1.25rem;
+  --text-small: 1rem;
 }
