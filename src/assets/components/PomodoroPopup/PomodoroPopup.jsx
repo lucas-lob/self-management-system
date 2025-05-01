@@ -4,6 +4,18 @@ import { useState } from 'react'
 
 import style from './PomodoroPopup.module.css'
 
+const CreateCategoryInput = () => {
+    return (
+        <div className='flex justify-center'>
+            <input type="text" placeholder='Nome da categoria' className='w-[299px] mr-[17px] rounded-[18px] border-2 border-on-primary text-center text-primary bg-on-primary placeholder:text-on-brackground hover:border-primary transition duration-350 ease-in-out' />
+
+            <button className='w-[97px] p-[8px_0] rounded-[8px] bg-primary hover:bg-tertiary text-on-primary hover:text-on-tertiary transition duration-350 ease-in-out'>
+                Criar
+            </button>
+        </div>
+    )
+}
+
 const SettingsMenu = () => {
     const [settings, setSettings] = useState({
         sectionDuration: 0,
@@ -60,18 +72,6 @@ const SettingsMenu = () => {
     )
 }
 
-const CreateCategoryInput = () => {
-    return (
-        <div className='flex justify-center'>
-            <input type="text" placeholder='Nome da categoria' className='w-[299px] mr-[17px] rounded-[18px] placeholder:text-on-brackground text-center text-primary bg-on-primary' />
-
-            <button className='w-[97px] rounded-[8px] p-[8px_0] bg-primary hover:bg-tertiary text-on-primary hover:text-on-tertiary transition duration-350 ease-in-out'>
-                Criar
-            </button>
-        </div>
-    )
-}
-
 const SelectionMenuWithAlert = () => {
     return (
         <div className='flex flex-col gap-[32px] m-[70px_81px_0]'>
@@ -98,7 +98,7 @@ const SelectionMenuWithoutAlert = () => {
             <div className='flex flex-col gap-[22px]'>
                 <h1>Escolha uma categoria</h1>
 
-                <select className='w-[413px] rounded-[6px] p-[5px_0] bg-background !text-secundary text-medium text-center'>
+                <select className='w-[413px] p-[3px_0] rounded-[6px] border-2 border-on-primary bg-background !text-secundary text-medium text-center hover:border-primary transition duration-350 ease-in-out'>
                     <option value=''>Selecione uma categoria</option>
                     <option value='estudos'>Estudos</option>
                 </select>
@@ -127,7 +127,7 @@ export const PomodoroPopup = () => {
             </button>
 
             <div>
-                <SelectionMenuWithoutAlert />
+                <SettingsMenu />
             </div>
 
             <button type='button' className='absolute left-[50%] bottom-[50px] translate-x-[-50%] w-[165px] p-[9px_0px] rounded-[8px] bg-primary hover:bg-tertiary text-on-primary hover:text-on-tertiary text-medium transition duration-350 ease-in-out'>
