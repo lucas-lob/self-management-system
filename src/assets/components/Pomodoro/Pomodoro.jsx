@@ -10,14 +10,14 @@ const iconScale = {
 }
 
 const elementStatus = {
-    USABLE: "opacity-100 hover:text-tertiary",
-    UNUSABLE: "opacity-30"
+    USABLE: "opacity-100 pointer-events-auto",
+    UNUSABLE: "opacity-30 pointer-events-none"
 }
 
 const IconButton = ({ status, iconText, scale = iconScale.NORMAL }) => {
     return (
         <button type='button'>
-            <span className={`${scale} ${status} md:!text-[64px] text-primary transition duration-300 ease-in-out material-symbols-rounded`}>
+            <span className={`${scale} ${status} md:!text-[64px] text-primary hover:text-tertiary transition duration-300 ease-in-out material-symbols-rounded`}>
                 {iconText}
             </span>
         </button>
@@ -33,7 +33,7 @@ export const Pomodoro = () => {
 
     const [currentSection, setCurrentSection] = useState(1)
 
-    const [elementsOpacity, setElementsOpacity] = useState({
+    const [elementsStatus, setElementsStatus] = useState({
         timer: elementStatus.UNUSABLE,
         section: elementStatus.UNUSABLE,
         playButton: elementStatus.USABLE,
@@ -44,23 +44,23 @@ export const Pomodoro = () => {
 
     return (
         <div className="absolute left-[50%] top-[50%] translate-[-50%] flex flex-col items-center">
-            <h1 className={`!text-[50px] sm:!text-[75px] lg:!text-[100px] xl:!text-[150px] text-primary ${elementsOpacity.timer}`}>
+            <h1 className={`!text-[50px] sm:!text-[75px] lg:!text-[100px] xl:!text-[150px] text-primary ${elementsStatus.timer}`}>
                 {timerValues.hours} : {timerValues.minutes} : {timerValues.seconds}
             </h1>
 
-            <h2 className={`mb-lg lg:mb-xl text-primary ${elementsOpacity.section}`}>
+            <h2 className={`mb-lg lg:mb-xl text-primary ${elementsStatus.section}`}>
                 Sessão {currentSection}
             </h2>
 
             <div className='flex gap-[20px] lg:gap-[40px]'>
 
-                <IconButton status={elementsOpacity.playButton} iconText="play_arrow" />
+                <IconButton status={elementsStatus.playButton} iconText="play_arrow" />
 
-                <IconButton status={elementsOpacity.pauseButton} iconText="pause" />
+                <IconButton status={elementsStatus.pauseButton} iconText="pause" />
 
-                <IconButton status={elementsOpacity.stopButton} iconText="stop" />
+                <IconButton status={elementsStatus.stopButton} iconText="stop" />
 
-                <IconButton status={elementsOpacity.settingsButton} iconText="settings" scale={iconScale.REDUCED} />
+                <IconButton status={elementsStatus.settingsButton} iconText="settings" scale={iconScale.REDUCED} />
             </div>
         </div>
     )
