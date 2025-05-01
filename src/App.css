@@ -22,4 +22,8 @@
   --text-big: 1.875rem;
   --text-medium: 1.25rem;
   --text-small: 1rem;
+
+  --spacing-lg: 20px;
+  --spacing-xl: 40px;
 }
+
