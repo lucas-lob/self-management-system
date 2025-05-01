@@ -5,7 +5,7 @@ import { PomodoroPopup } from './assets/components/PomodoroPopup/PomodoroPopup'
 function App() {
   return (
     <>
-      <Pomodoro />
+      <PomodoroPopup />
     </>
   )
 }

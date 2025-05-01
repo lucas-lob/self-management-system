@@ -26,7 +26,7 @@ const SettingsMenu = () => {
     })
 
     return (
-        <div className='flex flex-col gap-[30px] m-[70px_70px_0_70px]'>
+        <div className='flex flex-col gap-[30px] m-[70px_70px_0_70px] text-on-secundary'>
             <div>
                 <h1 className='mb-[30px]'>SESSÕES</h1>
 
@@ -60,7 +60,7 @@ const SettingsMenu = () => {
                     <li className='flex justify-between'>
                         <h2>Som</h2>
 
-                        <select className='text-medium text-on-secundary'>
+                        <select className='text-medium'>
                             <option value={settings.notificationSound}>
                                 {settings.notificationSound}
                             </option>
@@ -74,7 +74,7 @@ const SettingsMenu = () => {
 
 const SelectionMenuWithAlert = () => {
     return (
-        <div className='flex flex-col gap-[32px] m-[70px_81px_0]'>
+        <div className='flex flex-col gap-[32px] m-[70px_81px_0] text-on-secundary'>
             <span className="!text-[75px] text-center material-symbols-rounded">
                 error
             </span>
@@ -94,8 +94,8 @@ const SelectionMenuWithAlert = () => {
 
 const SelectionMenuWithoutAlert = () => {
     return (
-        <div className='flex flex-col gap-[32px] m-[118px_67px_0] items-center '>
-            <div className='flex flex-col gap-[22px]'>
+        <div className='flex flex-col gap-[32px] m-[118px_67px_0] items-center text-on-secundary'>
+            <div className='flex flex-col gap-[20px]'>
                 <h1>Escolha uma categoria</h1>
 
                 <select className='w-[413px] p-[3px_0] rounded-[6px] border-2 border-on-primary bg-background !text-secundary text-medium text-center hover:border-primary transition duration-350 ease-in-out'>
@@ -106,7 +106,7 @@ const SelectionMenuWithoutAlert = () => {
 
             <p>- ou -</p>
 
-            <div className='flex flex-col gap-[22px]'>
+            <div className='flex flex-col gap-[20px]'>
                 <h1>Crie uma nova categoria</h1>
 
                 <CreateCategoryInput />
@@ -121,13 +121,13 @@ export const PomodoroPopup = () => {
     return (
         <div className='absolute top-[50%] left-[50%] translate-[-50%] w-[585px] h-[543px] bg-secundary rounded-[45px]'>
             <button type='button' className='absolute left-[100%] translate-x-[calc(-100%-34px)] top-[34px]'>
-                <span className='!text-[32px] hover:!text-on-tertiary transition duration-350 ease-in-out material-symbols-rounded'>
+                <span className='text-on-secundary hover:!text-on-tertiary transition duration-350 ease-in-out material-symbols-rounded'>
                     cancel
                 </span>
             </button>
 
             <div>
-                <SettingsMenu />
+                <SelectionMenuWithAlert />
             </div>
 
             <button type='button' className='absolute left-[50%] bottom-[50px] translate-x-[-50%] w-[165px] p-[9px_0px] rounded-[8px] bg-primary hover:bg-tertiary text-on-primary hover:text-on-tertiary text-medium transition duration-350 ease-in-out'>
