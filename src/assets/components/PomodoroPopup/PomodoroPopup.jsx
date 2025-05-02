@@ -119,7 +119,7 @@ export const PomodoroPopup = ({popupID, closeButtonOnClickListener}) => {
     const bottomButtonText = "Salvar"
 
     return (
-        <div className='absolute top-[50%] left-[50%] translate-[-50%] w-[585px] h-[543px] bg-secundary rounded-[45px]'>
+        <div className='z-10 absolute top-[50%] left-[50%] translate-[-50%] w-[585px] h-[543px] bg-secundary rounded-[45px]'>
             <button type='button' className='absolute left-[100%] translate-x-[calc(-100%-34px)] top-[34px]' onClick={closeButtonOnClickListener}>
                 <span className='text-on-secundary hover:!text-on-tertiary transition duration-350 ease-in-out material-symbols-rounded'>
                     cancel
