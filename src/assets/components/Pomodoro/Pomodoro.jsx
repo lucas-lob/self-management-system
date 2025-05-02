@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 
+import {secondsToFormattedTime } from './timeConverter.js'
+
 import style from './Pomodoro.module.css'
 
 // CONSTANT TAILWIND UTILITY CLASSES
