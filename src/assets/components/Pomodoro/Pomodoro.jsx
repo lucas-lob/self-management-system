@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-import {secondsToFormattedTime } from './timeConverter.js'
+import { secondsToFormattedTime, secondsToTime } from './timeConverter.js'
 
 import style from './Pomodoro.module.css'
 
@@ -27,19 +27,20 @@ const IconButton = ({ onClickListener, status, iconText, scale = iconScale.NORMA
 }
 
 let timerSettings = {
-    sectionDuration: 10,
-    shortIntervalDuration: 0,
-    longIntervalDuration: 0,
+    sectionDuration: 5,
+    shortIntervalDuration: 5,
+    longIntervalDuration: 10,
     setIntervalID: 0,
     isInterval: false,
-    currentSection: 1
+    currentSection: 1,
+    longIntervalSection: 3
 }
 
 export const Pomodoro = () => {
     const [timerValues, setTimerValues] = useState({
-        hours: 0,
-        minutes: 0,
-        seconds: 5
+        hours: secondsToTime(timerSettings.sectionDuration).hours,
+        minutes: secondsToTime(timerSettings.sectionDuration).minutes,
+        seconds: secondsToTime(timerSettings.sectionDuration).seconds
     })
 
     const [elementsStatus, setElementsStatus] = useState({
@@ -74,7 +75,7 @@ export const Pomodoro = () => {
                 if (minutes === -1) {
                     minutes = 59
                     hours--
-                    if (hours === -1) {                    
+                    if (hours === -1) {
                         clearInterval(timerSettings.setIntervalID)
                         setElementsStatus({
                             timer: elementStatus.UNUSABLE,
@@ -84,10 +85,21 @@ export const Pomodoro = () => {
                             stopButton: elementStatus.UNUSABLE,
                             settingsButton: elementStatus.USABLE
                         })
-                        if(timerSettings.isInterval){
-                            // End interval
+                        if (timerSettings.isInterval) {
+                            timerSettings.isInterval = false
+                            timerSettings.currentSection++  
+
+                            setTimerValues(secondsToTime(timerSettings.sectionDuration))
                         } else {
-                            // End section
+                            timerSettings.isInterval = true
+
+                            if(timerSettings.currentSection % timerSettings.longIntervalSection === 0){
+                                // Is long interval
+                                setTimerValues(secondsToTime(timerSettings.longIntervalDuration))
+                            } else {
+                                // Is short interval
+                                setTimerValues(secondsToTime(timerSettings.shortIntervalDuration))
+                            }
                         }
                         return
                     }
@@ -102,7 +114,7 @@ export const Pomodoro = () => {
         }, 1000);
     }
 
-    function pauseTimer() {    
+    function pauseTimer() {
         clearInterval(timerSettings.setIntervalID)
         setElementsStatus({
             timer: elementStatus.UNUSABLE,
@@ -114,7 +126,7 @@ export const Pomodoro = () => {
         })
     }
 
-    function stopTimer() {    
+    function stopTimer() {
         clearInterval(timerSettings.setIntervalID)
         setElementsStatus({
             timer: elementStatus.UNUSABLE,
