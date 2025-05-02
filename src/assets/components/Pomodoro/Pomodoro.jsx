@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 
 import { secondsToFormattedTime, secondsToTime } from './timeConverter.js'
+import { PomodoroPopup } from '../PomodoroPopup/PomodoroPopup.jsx'
 
 import style from './Pomodoro.module.css'
 
@@ -37,6 +38,8 @@ let timerSettings = {
 }
 
 export const Pomodoro = () => {
+    const [popup, setPopup] = useState(<></>)
+
     const [timerValues, setTimerValues] = useState({
         hours: secondsToTime(timerSettings.sectionDuration).hours,
         minutes: secondsToTime(timerSettings.sectionDuration).minutes,
@@ -87,13 +90,13 @@ export const Pomodoro = () => {
                         })
                         if (timerSettings.isInterval) {
                             timerSettings.isInterval = false
-                            timerSettings.currentSection++  
+                            timerSettings.currentSection++
 
                             setTimerValues(secondsToTime(timerSettings.sectionDuration))
                         } else {
                             timerSettings.isInterval = true
 
-                            if(timerSettings.currentSection % timerSettings.longIntervalSection === 0){
+                            if (timerSettings.currentSection % timerSettings.longIntervalSection === 0) {
                                 // Is long interval
                                 setTimerValues(secondsToTime(timerSettings.longIntervalDuration))
                             } else {
@@ -148,26 +151,46 @@ export const Pomodoro = () => {
         }
     }
 
+    function showSettingsPopup() {
+        setPopup(
+            <PomodoroPopup popupID={1} closeButtonOnClickListener={() => {setPopup()}} />
+        )
+    }
+    function showSelectionPopupWithoutAlert() {
+        setPopup(
+            <PomodoroPopup popupID={2} closeButtonOnClickListener={() => {setPopup()}} />
+        )
+    }
+    function showSelectionPopupWithAlert() {
+        setPopup(
+            <PomodoroPopup popupID={3} closeButtonOnClickListener={() => {setPopup()}} />
+        )
+    }
+
     return (
-        <div className="absolute left-[50%] top-[50%] translate-[-50%] flex flex-col items-center">
-            <h1 className={`!text-[50px] sm:!text-[75px] lg:!text-[100px] xl:!text-[150px] text-primary ${elementsStatus.timer}`}>
-                {timerValues.hours} : {timerValues.minutes} : {timerValues.seconds}
-            </h1>
+        <>
+            {popup}
 
-            <h2 className={`mb-lg lg:mb-xl text-primary ${elementsStatus.section}`}>
-                Sessão {timerSettings.currentSection}
-            </h2>
+            <div className="absolute left-[50%] top-[50%] translate-[-50%] flex flex-col items-center">
+                <h1 className={`!text-[50px] sm:!text-[75px] lg:!text-[100px] xl:!text-[150px] text-primary ${elementsStatus.timer}`}>
+                    {timerValues.hours} : {timerValues.minutes} : {timerValues.seconds}
+                </h1>
 
-            <div className='flex gap-[20px] lg:gap-[40px]'>
+                <h2 className={`mb-lg lg:mb-xl text-primary ${elementsStatus.section}`}>
+                    Sessão {timerSettings.currentSection}
+                </h2>
 
-                <IconButton status={elementsStatus.playButton} onClickListener={runTimer} iconText="play_arrow" />
+                <div className='flex gap-[20px] lg:gap-[40px]'>
 
-                <IconButton status={elementsStatus.pauseButton} onClickListener={pauseTimer} iconText="pause" />
+                    <IconButton status={elementsStatus.playButton} onClickListener={runTimer} iconText="play_arrow" />
 
-                <IconButton status={elementsStatus.stopButton} onClickListener={stopTimer} iconText="stop" />
+                    <IconButton status={elementsStatus.pauseButton} onClickListener={pauseTimer} iconText="pause" />
 
-                <IconButton status={elementsStatus.settingsButton} iconText="settings" scale={iconScale.REDUCED} />
+                    <IconButton status={elementsStatus.stopButton} onClickListener={stopTimer} iconText="stop" />
+
+                    <IconButton status={elementsStatus.settingsButton} onClickListener={showSettingsPopup} iconText="settings" scale={iconScale.REDUCED} />
+                </div>
             </div>
-        </div>
+        </>
     )
 }

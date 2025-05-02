@@ -115,19 +115,21 @@ const SelectionMenuWithoutAlert = () => {
     )
 }
 
-export const PomodoroPopup = () => {
+export const PomodoroPopup = ({popupID, closeButtonOnClickListener}) => {
     const bottomButtonText = "Salvar"
 
     return (
         <div className='absolute top-[50%] left-[50%] translate-[-50%] w-[585px] h-[543px] bg-secundary rounded-[45px]'>
-            <button type='button' className='absolute left-[100%] translate-x-[calc(-100%-34px)] top-[34px]'>
+            <button type='button' className='absolute left-[100%] translate-x-[calc(-100%-34px)] top-[34px]' onClick={closeButtonOnClickListener}>
                 <span className='text-on-secundary hover:!text-on-tertiary transition duration-350 ease-in-out material-symbols-rounded'>
                     cancel
                 </span>
             </button>
 
             <div>
-                <SelectionMenuWithAlert />
+                { popupID === 1 && <SettingsMenu />}
+                { popupID === 2 && <SelectionMenuWithoutAlert />}
+                { popupID === 3 && <SelectionMenuWithAlert />}
             </div>
 
             <button type='button' className='absolute left-[50%] bottom-[50px] translate-x-[-50%] w-[165px] p-[9px_0px] rounded-[8px] bg-primary hover:bg-tertiary text-on-primary hover:text-on-tertiary text-medium transition duration-350 ease-in-out'>
