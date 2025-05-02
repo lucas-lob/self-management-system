@@ -55,6 +55,7 @@ export const Pomodoro = () => {
         settingsButton: elementStatus.USABLE
     })
 
+    // TIMER FUNCTIONS
     function runTimer() {
         setElementsStatus({
             timer: elementStatus.USABLE,
@@ -75,11 +76,15 @@ export const Pomodoro = () => {
             if (seconds === -1) {
                 seconds = 59
                 minutes--
+
                 if (minutes === -1) {
                     minutes = 59
                     hours--
+
                     if (hours === -1) {
+                        // Timer ended
                         clearInterval(timerSettings.setIntervalID)
+
                         setElementsStatus({
                             timer: elementStatus.UNUSABLE,
                             section: elementStatus.UNUSABLE,
@@ -88,6 +93,7 @@ export const Pomodoro = () => {
                             stopButton: elementStatus.UNUSABLE,
                             settingsButton: elementStatus.USABLE
                         })
+
                         if (timerSettings.isInterval) {
                             timerSettings.isInterval = false
                             timerSettings.currentSection++
@@ -104,6 +110,7 @@ export const Pomodoro = () => {
                                 setTimerValues(secondsToTime(timerSettings.shortIntervalDuration))
                             }
                         }
+
                         return
                     }
                 }
@@ -119,6 +126,7 @@ export const Pomodoro = () => {
 
     function pauseTimer() {
         clearInterval(timerSettings.setIntervalID)
+
         setElementsStatus({
             timer: elementStatus.UNUSABLE,
             section: elementStatus.UNUSABLE,
@@ -131,6 +139,7 @@ export const Pomodoro = () => {
 
     function stopTimer() {
         clearInterval(timerSettings.setIntervalID)
+
         setElementsStatus({
             timer: elementStatus.UNUSABLE,
             section: elementStatus.UNUSABLE,
@@ -144,6 +153,7 @@ export const Pomodoro = () => {
             minutes: 60,
             seconds: 0
         })
+
         timerSettings = {
             ...timerSettings,
             isInterval: false,
@@ -151,6 +161,7 @@ export const Pomodoro = () => {
         }
     }
 
+    // POPUPS FUNCTIONS
     function showSettingsPopup() {
         setPopup(
             <PomodoroPopup popupID={1} closeButtonOnClickListener={() => {setPopup()}} />
@@ -181,7 +192,6 @@ export const Pomodoro = () => {
                 </h2>
 
                 <div className='flex gap-[20px] lg:gap-[40px]'>
-
                     <IconButton status={elementsStatus.playButton} onClickListener={runTimer} iconText="play_arrow" />
 
                     <IconButton status={elementsStatus.pauseButton} onClickListener={pauseTimer} iconText="pause" />
