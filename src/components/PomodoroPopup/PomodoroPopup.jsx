@@ -26,9 +26,9 @@ const SettingsMenu = () => {
     return (
         <div className='flex flex-col gap-[30px] m-[70px_70px_0_70px] text-on-secundary'>
             <div>
-                <h1 className='mb-[30px]'>SESSÕES</h1>
+                <h1 className='mb-[30px] text-big'>SESSÕES</h1>
 
-                <ul className='flex flex-col gap-[20px]'>
+                <ul className='flex flex-col gap-[20px] text-medium'>
                     <li className='flex justify-between'>
                         <h2>Duração da sessão</h2>
                         <h2>{settings.sectionDuration}</h2>
@@ -52,9 +52,9 @@ const SettingsMenu = () => {
             </div>
 
             <div>
-                <h1 className='mb-[30px]'>NOTIFICAÇÕES</h1>
+                <h1 className='mb-[30px] text-big'>NOTIFICAÇÕES</h1>
 
-                <ul>
+                <ul className='text-medium'>
                     <li className='flex justify-between'>
                         <h2>Som</h2>
 
@@ -94,7 +94,7 @@ const SelectionMenuWithoutAlert = () => {
     return (
         <div className='flex flex-col gap-[32px] m-[118px_67px_0] items-center text-on-secundary'>
             <div className='flex flex-col gap-[20px]'>
-                <h1>Escolha uma categoria</h1>
+                <h1 className='text-big'>Escolha uma categoria</h1>
 
                 <select className='w-[413px] p-[3px_0] rounded-[6px] border-2 border-on-primary bg-background !text-secundary text-medium text-center hover:border-primary transition duration-350 ease-in-out'>
                     <option value=''>Selecione uma categoria</option>
@@ -105,7 +105,7 @@ const SelectionMenuWithoutAlert = () => {
             <p>- ou -</p>
 
             <div className='flex flex-col gap-[20px]'>
-                <h1>Crie uma nova categoria</h1>
+                <h1 className='text-big'>Crie uma nova categoria</h1>
 
                 <CreateCategoryInput />
             </div>

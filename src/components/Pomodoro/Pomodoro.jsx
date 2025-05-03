@@ -190,9 +190,9 @@ export const Pomodoro = () => {
             {popup}
 
             <div className="absolute left-[50%] top-[50%] translate-[-50%] flex flex-col items-center">
-                {timerSettings.isPause && <h1 className='mb-xl'> Pausado </h1>}
+                {timerSettings.isPause && <h1 className='mb-xl text-big'> Pausado </h1>}
 
-                <div className={`flex !text-[50px] sm:!text-[75px] lg:!text-[100px] xl:!text-[150px] text-primary ${elementsStatus.timer}`}>
+                <div className={`flex text-[50px] sm:text-[75px] lg:text-[100px] xl:text-[150px] text-primary ${elementsStatus.timer}`}>
                     {timerValues.hours < 9 ? <h1> 0{timerValues.hours}: </h1> : <h1> {timerValues.hours}: </h1>} 
 
                     {timerValues.minutes < 9 ? <h1> 0{timerValues.minutes}: </h1> : <h1> {timerValues.minutes}: </h1>}  
@@ -200,7 +200,7 @@ export const Pomodoro = () => {
                     {timerValues.seconds < 9 ? <h1> 0{timerValues.seconds} </h1> : <h1> {timerValues.seconds} </h1>} 
                 </div>
 
-                <div className={`flex mb-lg lg:mb-xl text-primary ${elementsStatus.section}`}>
+                <div className={`flex mb-lg lg:mb-xl text-medium text-primary ${elementsStatus.section}`}>
                     <h2>
                         Sessão {timerSettings.currentSection}
                     </h2>
