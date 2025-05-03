@@ -2,8 +2,6 @@ import React from 'react'
 
 import { useState } from 'react'
 
-import style from './PomodoroPopup.module.css'
-
 const CreateCategoryInput = () => {
     return (
         <div className='flex justify-center'>

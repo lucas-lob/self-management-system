@@ -3,8 +3,6 @@ import { useState } from 'react'
 
 import { PomodoroPopup } from '../PomodoroPopup/PomodoroPopup.jsx'
 
-import style from './Pomodoro.module.css'
-
 // CONSTANT TAILWIND UTILITY CLASSES
 const iconScale = {
     NORMAL: "scale-100",

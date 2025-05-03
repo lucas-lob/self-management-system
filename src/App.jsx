@@ -1,6 +1,6 @@
 import './App.css'
-import { Pomodoro } from './assets/components/Pomodoro/Pomodoro'
-import { PomodoroPopup } from './assets/components/PomodoroPopup/PomodoroPopup'
+import { Pomodoro } from './components/Pomodoro/Pomodoro'
+import { PomodoroPopup } from './components/PomodoroPopup/PomodoroPopup'
 
 function App() {
   return (
