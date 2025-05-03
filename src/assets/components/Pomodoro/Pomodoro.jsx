@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 
-import { secondsToFormattedTime, secondsToTime } from './timeConverter.js'
 import { PomodoroPopup } from '../PomodoroPopup/PomodoroPopup.jsx'
 
 import style from './Pomodoro.module.css'
@@ -28,9 +27,21 @@ const IconButton = ({ onClickListener, status, iconText, scale = iconScale.NORMA
 }
 
 let timerSettings = {
-    sectionDuration: 5,
-    shortIntervalDuration: 5,
-    longIntervalDuration: 10,
+    sectionDuration: {
+        hours: 0,
+        minutes: 0,
+        seconds: 5
+    },
+    shortIntervalDuration: {
+        hours: 0,
+        minutes: 0,
+        seconds: 5
+    },
+    longIntervalDuration: {
+        hours: 0,
+        minutes: 0,
+        seconds: 6
+    },
     setIntervalID: 0,
     isInterval: false,
     currentSection: 1,
@@ -40,11 +51,7 @@ let timerSettings = {
 export const Pomodoro = () => {
     const [popup, setPopup] = useState(<></>)
 
-    const [timerValues, setTimerValues] = useState({
-        hours: secondsToTime(timerSettings.sectionDuration).hours,
-        minutes: secondsToTime(timerSettings.sectionDuration).minutes,
-        seconds: secondsToTime(timerSettings.sectionDuration).seconds
-    })
+    const [timerValues, setTimerValues] = useState(timerSettings.sectionDuration)
 
     const [elementsStatus, setElementsStatus] = useState({
         timer: elementStatus.UNUSABLE,
@@ -98,16 +105,16 @@ export const Pomodoro = () => {
                             timerSettings.isInterval = false
                             timerSettings.currentSection++
 
-                            setTimerValues(secondsToTime(timerSettings.sectionDuration))
+                            setTimerValues(timerSettings.sectionDuration)
                         } else {
                             timerSettings.isInterval = true
 
                             if (timerSettings.currentSection % timerSettings.longIntervalSection === 0) {
                                 // Is long interval
-                                setTimerValues(secondsToTime(timerSettings.longIntervalDuration))
+                                setTimerValues(timerSettings.longIntervalDuration)
                             } else {
                                 // Is short interval
-                                setTimerValues(secondsToTime(timerSettings.shortIntervalDuration))
+                                setTimerValues(timerSettings.shortIntervalDuration)
                             }
                         }
 
@@ -148,11 +155,7 @@ export const Pomodoro = () => {
             stopButton: elementStatus.UNUSABLE,
             settingsButton: elementStatus.USABLE
         })
-        setTimerValues({
-            hours: 0,
-            minutes: 60,
-            seconds: 0
-        })
+        setTimerValues(timerSettings.sectionDuration)
 
         timerSettings = {
             ...timerSettings,
