@@ -44,6 +44,7 @@ let timerSettings = {
     },
     setIntervalID: 0,
     isInterval: false,
+    isPause: false,
     currentSection: 1,
     longIntervalSection: 3
 }
@@ -64,6 +65,8 @@ export const Pomodoro = () => {
 
     // TIMER FUNCTIONS
     function runTimer() {
+        timerSettings.isPause = false
+
         setElementsStatus({
             timer: elementStatus.USABLE,
             section: elementStatus.USABLE,
@@ -134,6 +137,8 @@ export const Pomodoro = () => {
     function pauseTimer() {
         clearInterval(timerSettings.setIntervalID)
 
+        timerSettings.isPause = true
+
         setElementsStatus({
             timer: elementStatus.UNUSABLE,
             section: elementStatus.UNUSABLE,
@@ -147,6 +152,13 @@ export const Pomodoro = () => {
     function stopTimer() {
         clearInterval(timerSettings.setIntervalID)
 
+        timerSettings = {
+            ...timerSettings,
+            isInterval: false,
+            isPause: false,
+            currentSection: 1
+        }
+
         setElementsStatus({
             timer: elementStatus.UNUSABLE,
             section: elementStatus.UNUSABLE,
@@ -156,12 +168,6 @@ export const Pomodoro = () => {
             settingsButton: elementStatus.USABLE
         })
         setTimerValues(timerSettings.sectionDuration)
-
-        timerSettings = {
-            ...timerSettings,
-            isInterval: false,
-            currentSection: 1
-        }
     }
 
     // POPUPS FUNCTIONS
@@ -186,13 +192,19 @@ export const Pomodoro = () => {
             {popup}
 
             <div className="absolute left-[50%] top-[50%] translate-[-50%] flex flex-col items-center">
+                {timerSettings.isPause && <h1 className='mb-xl'> Pausado </h1>}
+
                 <h1 className={`!text-[50px] sm:!text-[75px] lg:!text-[100px] xl:!text-[150px] text-primary ${elementsStatus.timer}`}>
                     {timerValues.hours} : {timerValues.minutes} : {timerValues.seconds}
                 </h1>
 
-                <h2 className={`mb-lg lg:mb-xl text-primary ${elementsStatus.section}`}>
-                    Sessão {timerSettings.currentSection}
-                </h2>
+                <div className={`flex mb-lg lg:mb-xl text-primary ${elementsStatus.section}`}>
+                    <h2>
+                        Sessão {timerSettings.currentSection}
+                    </h2>
+
+                    {timerSettings.isInterval && <h2><pre className='font-autour-one'> | Intervalo {timerSettings.currentSection}</pre></h2>}
+                </div>
 
                 <div className='flex gap-[20px] lg:gap-[40px]'>
                     <IconButton status={elementsStatus.playButton} onClickListener={runTimer} iconText="play_arrow" />
