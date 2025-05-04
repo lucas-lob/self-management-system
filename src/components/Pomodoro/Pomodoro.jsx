@@ -17,7 +17,7 @@ const elementStatus = {
 const IconButton = ({ onClickListener, status, iconText, scale = iconScale.NORMAL }) => {
     return (
         <button type='button' className={`${status} text-primary hover:text-tertiary transition duration-300 ease-in-out `} onClick={onClickListener}>
-            <span className={`${scale} md:!text-[64px] material-symbols-rounded`}>
+            <span className={`${scale} !text-[40px] md:text-[64px] material-symbols-rounded`}>
                 {iconText}
             </span>
         </button>
@@ -200,7 +200,7 @@ export const Pomodoro = () => {
                     {timerValues.seconds < 9 ? <h1> 0{timerValues.seconds} </h1> : <h1> {timerValues.seconds} </h1>} 
                 </div>
 
-                <div className={`flex mb-lg lg:mb-xl text-medium text-primary ${elementsStatus.section}`}>
+                <div className={`flex mb-xl text-small md:text-medium text-primary ${elementsStatus.section}`}>
                     <h2>
                         Sessão {timerSettings.currentSection}
                     </h2>
@@ -208,7 +208,7 @@ export const Pomodoro = () => {
                     {timerSettings.isInterval && <h2><pre className='font-autour-one'> | Intervalo {timerSettings.currentSection}</pre></h2>}
                 </div>
 
-                <div className='flex gap-[20px] lg:gap-[40px]'>
+                <div className='flex gap-sm lg:gap-lg'>
                     <IconButton status={elementsStatus.playButton} onClickListener={runTimer} iconText="play_arrow" />
 
                     <IconButton status={elementsStatus.pauseButton} onClickListener={pauseTimer} iconText="pause" />

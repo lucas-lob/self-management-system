@@ -22,8 +22,12 @@
   --text-big: 1.875rem;
   --text-medium: 1.25rem;
   --text-small: 1rem;
+  --text-very-small: 0.813rem;
+  --text-smallest: 0.688rem;
 
-  --spacing-lg: 20px;
+  --spacing-sm: 10px;
+  --spacing-md: 20px;
+  --spacing-lg: 30px;
   --spacing-xl: 40px;
 }
 

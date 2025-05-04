@@ -10,7 +10,3 @@ button {
 input:focus, select:focus, button:focus {
   outline: none;
 }
-
-.material-symbols-rounded {
-    font-size: 32px;
-  }
