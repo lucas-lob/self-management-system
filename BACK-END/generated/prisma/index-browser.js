@@ -122,11 +122,14 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   userId: 'userId'
 };
 
 exports.Prisma.ActivityScalarFieldEnum = {
   id: 'id',
+  startTime: 'startTime',
+  endTime: 'endTime',
   categoryId: 'categoryId'
 };
 
