@@ -38,6 +38,13 @@ app.get('/users/:userId/pomodoro-settings', async (req, res) => {
     const pomodoroSettings = await prisma.pomodoroSettings.findUnique({
         where: {
             userId: req.params.userId
+        },
+        select: {
+            sectionDuration: true,
+            shortIntervalDuration: true,
+            longIntervalDuration: true,
+            sectionQuantity: true,
+            notificationSound: true
         }
     })
 
@@ -79,7 +86,7 @@ app.get('/users/:userId/categories', async (req, res) => {
     const userCategories = await prisma.category.findMany({
         where: {
             userId: req.params.userId
-        }, 
+        },
         select: {
             name: true,
         }
