@@ -55,4 +55,27 @@ app.put('/users/:userId/pomodoro-settings', async (req, res) => {
 
 
 
+// CATEGORIES ROUTERS
+app.post('/users/:userId/categories', async (req, res) => {
+    await prisma.category.create({
+        data: {
+            name: req.body.name
+        }
+    })
+
+    res.status(201).json({ "Message": "Categories added" })
+})
+
+app.get('/users/:userId/categories', async (req, res) => {
+    const userCategories = await prisma.category.findMany({
+        where: {
+            userId: req.params.userId
+        }
+    })
+
+    res.status(200).json(userCategories)
+})
+
+
+
 app.listen(3000)
