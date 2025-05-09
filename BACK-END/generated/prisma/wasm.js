@@ -120,6 +120,26 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password'
 };
 
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+};
+
+exports.Prisma.ActivityScalarFieldEnum = {
+  id: 'id',
+  categoryId: 'categoryId'
+};
+
+exports.Prisma.PomodoroSettingsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sectionDuration: 'sectionDuration',
+  shortIntervalDuration: 'shortIntervalDuration',
+  longIntervalDuration: 'longIntervalDuration',
+  sectionQuantity: 'sectionQuantity',
+  notificationSound: 'notificationSound'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -132,7 +152,10 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Category: 'Category',
+  Activity: 'Activity',
+  PomodoroSettings: 'PomodoroSettings'
 };
 
 /**

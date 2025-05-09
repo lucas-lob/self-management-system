@@ -13,53 +13,20 @@ app.use(express.json())
 const prisma = new PrismaClient()
 
 
-
+// USER ROUTERS
 app.post('/users', async (req, res) => {
     await prisma.user.create({
         data: {
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            pomodoroSettings: {
+                create: {}
+            }
         }
     })
 
-    res.status(201).json({ message: "User created" })
-})
-
-
-
-app.put('/users/:id', async (req, res) => {
-    try {
-        await prisma.user.update({
-            where: {
-                id: req.params.id
-            },
-            data: {
-                name: req.body.name,
-                email: req.body.email
-            }
-        })
-    } catch {
-        res.status(200).json({ message: "User ID not found" })
-    }
-
-    res.status(200).json({ message: "User updated" })
-})
-
-
-
-app.delete('/users/:id', async (req, res) => {
-    try {
-        await prisma.user.delete({
-            where: {
-                id: req.params.id
-            }
-        })
-    } catch {
-        res.status(200).json({ message: "User ID not found" })
-    }
-
-    res.status(200).json({ message: "User deleted" })
+    res.status(201).json({ "Message": "User created" })
 })
 
 
