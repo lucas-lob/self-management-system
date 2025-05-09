@@ -41,7 +41,7 @@ app.get('/users/:userId/pomodoro-settings', async (req, res) => {
         }
     })
 
-    res.status(200).json({ "Message": "Pomodoro settings obtained" })
+    res.status(200).json(pomodoroSettings)
 })
 
 app.put('/users/:userId/pomodoro-settings', async (req, res) => {
