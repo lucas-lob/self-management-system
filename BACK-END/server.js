@@ -57,9 +57,16 @@ app.put('/users/:userId/pomodoro-settings', async (req, res) => {
 
 // CATEGORIES ROUTERS
 app.post('/users/:userId/categories', async (req, res) => {
-    await prisma.category.create({
+    await prisma.user.update({
+        where: {
+            id: req.params.userId
+        },
         data: {
-            name: req.body.name
+            categories: {
+                create: {
+                    name: req.body.name
+                }
+            }
         }
     })
 
