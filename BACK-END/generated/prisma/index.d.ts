@@ -2186,16 +2186,19 @@ export namespace Prisma {
 
   export type CategoryMinAggregateOutputType = {
     id: string | null
+    name: string | null
     userId: string | null
   }
 
   export type CategoryMaxAggregateOutputType = {
     id: string | null
+    name: string | null
     userId: string | null
   }
 
   export type CategoryCountAggregateOutputType = {
     id: number
+    name: number
     userId: number
     _all: number
   }
@@ -2203,16 +2206,19 @@ export namespace Prisma {
 
   export type CategoryMinAggregateInputType = {
     id?: true
+    name?: true
     userId?: true
   }
 
   export type CategoryMaxAggregateInputType = {
     id?: true
+    name?: true
     userId?: true
   }
 
   export type CategoryCountAggregateInputType = {
     id?: true
+    name?: true
     userId?: true
     _all?: true
   }
@@ -2291,6 +2297,7 @@ export namespace Prisma {
 
   export type CategoryGroupByOutputType = {
     id: string
+    name: string
     userId: string
     _count: CategoryCountAggregateOutputType | null
     _min: CategoryMinAggregateOutputType | null
@@ -2313,6 +2320,7 @@ export namespace Prisma {
 
   export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     activities?: boolean | Category$activitiesArgs<ExtArgs>
@@ -2323,10 +2331,11 @@ export namespace Prisma {
 
   export type CategorySelectScalar = {
     id?: boolean
+    name?: boolean
     userId?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "userId", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     activities?: boolean | Category$activitiesArgs<ExtArgs>
@@ -2341,6 +2350,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      name: string
       userId: string
     }, ExtArgs["result"]["category"]>
     composites: {}
@@ -2737,6 +2747,7 @@ export namespace Prisma {
    */
   interface CategoryFieldRefs {
     readonly id: FieldRef<"Category", 'String'>
+    readonly name: FieldRef<"Category", 'String'>
     readonly userId: FieldRef<"Category", 'String'>
   }
     
@@ -3162,16 +3173,22 @@ export namespace Prisma {
 
   export type ActivityMinAggregateOutputType = {
     id: string | null
+    startTime: Date | null
+    endTime: Date | null
     categoryId: string | null
   }
 
   export type ActivityMaxAggregateOutputType = {
     id: string | null
+    startTime: Date | null
+    endTime: Date | null
     categoryId: string | null
   }
 
   export type ActivityCountAggregateOutputType = {
     id: number
+    startTime: number
+    endTime: number
     categoryId: number
     _all: number
   }
@@ -3179,16 +3196,22 @@ export namespace Prisma {
 
   export type ActivityMinAggregateInputType = {
     id?: true
+    startTime?: true
+    endTime?: true
     categoryId?: true
   }
 
   export type ActivityMaxAggregateInputType = {
     id?: true
+    startTime?: true
+    endTime?: true
     categoryId?: true
   }
 
   export type ActivityCountAggregateInputType = {
     id?: true
+    startTime?: true
+    endTime?: true
     categoryId?: true
     _all?: true
   }
@@ -3267,6 +3290,8 @@ export namespace Prisma {
 
   export type ActivityGroupByOutputType = {
     id: string
+    startTime: Date
+    endTime: Date
     categoryId: string
     _count: ActivityCountAggregateOutputType | null
     _min: ActivityMinAggregateOutputType | null
@@ -3289,6 +3314,8 @@ export namespace Prisma {
 
   export type ActivitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    startTime?: boolean
+    endTime?: boolean
     categoryId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["activity"]>
@@ -3297,10 +3324,12 @@ export namespace Prisma {
 
   export type ActivitySelectScalar = {
     id?: boolean
+    startTime?: boolean
+    endTime?: boolean
     categoryId?: boolean
   }
 
-  export type ActivityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId", ExtArgs["result"]["activity"]>
+  export type ActivityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "startTime" | "endTime" | "categoryId", ExtArgs["result"]["activity"]>
   export type ActivityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }
@@ -3312,6 +3341,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      startTime: Date
+      endTime: Date
       categoryId: string
     }, ExtArgs["result"]["activity"]>
     composites: {}
@@ -3707,6 +3738,8 @@ export namespace Prisma {
    */
   interface ActivityFieldRefs {
     readonly id: FieldRef<"Activity", 'String'>
+    readonly startTime: FieldRef<"Activity", 'DateTime'>
+    readonly endTime: FieldRef<"Activity", 'DateTime'>
     readonly categoryId: FieldRef<"Activity", 'String'>
   }
     
@@ -5147,6 +5180,7 @@ export namespace Prisma {
 
   export const CategoryScalarFieldEnum: {
     id: 'id',
+    name: 'name',
     userId: 'userId'
   };
 
@@ -5155,6 +5189,8 @@ export namespace Prisma {
 
   export const ActivityScalarFieldEnum: {
     id: 'id',
+    startTime: 'startTime',
+    endTime: 'endTime',
     categoryId: 'categoryId'
   };
 
@@ -5206,6 +5242,20 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -5298,6 +5348,7 @@ export namespace Prisma {
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     id?: StringFilter<"Category"> | string
+    name?: StringFilter<"Category"> | string
     userId?: StringFilter<"Category"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     activities?: ActivityListRelationFilter
@@ -5305,6 +5356,7 @@ export namespace Prisma {
 
   export type CategoryOrderByWithRelationInput = {
     id?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
     activities?: ActivityOrderByRelationAggregateInput
@@ -5315,6 +5367,7 @@ export namespace Prisma {
     AND?: CategoryWhereInput | CategoryWhereInput[]
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
+    name?: StringFilter<"Category"> | string
     userId?: StringFilter<"Category"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     activities?: ActivityListRelationFilter
@@ -5322,6 +5375,7 @@ export namespace Prisma {
 
   export type CategoryOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
     _max?: CategoryMaxOrderByAggregateInput
@@ -5333,6 +5387,7 @@ export namespace Prisma {
     OR?: CategoryScalarWhereWithAggregatesInput[]
     NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Category"> | string
+    name?: StringWithAggregatesFilter<"Category"> | string
     userId?: StringWithAggregatesFilter<"Category"> | string
   }
 
@@ -5341,12 +5396,16 @@ export namespace Prisma {
     OR?: ActivityWhereInput[]
     NOT?: ActivityWhereInput | ActivityWhereInput[]
     id?: StringFilter<"Activity"> | string
+    startTime?: DateTimeFilter<"Activity"> | Date | string
+    endTime?: DateTimeFilter<"Activity"> | Date | string
     categoryId?: StringFilter<"Activity"> | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
   }
 
   export type ActivityOrderByWithRelationInput = {
     id?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     categoryId?: SortOrder
     category?: CategoryOrderByWithRelationInput
   }
@@ -5356,12 +5415,16 @@ export namespace Prisma {
     AND?: ActivityWhereInput | ActivityWhereInput[]
     OR?: ActivityWhereInput[]
     NOT?: ActivityWhereInput | ActivityWhereInput[]
+    startTime?: DateTimeFilter<"Activity"> | Date | string
+    endTime?: DateTimeFilter<"Activity"> | Date | string
     categoryId?: StringFilter<"Activity"> | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
   }, "id">
 
   export type ActivityOrderByWithAggregationInput = {
     id?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     categoryId?: SortOrder
     _count?: ActivityCountOrderByAggregateInput
     _max?: ActivityMaxOrderByAggregateInput
@@ -5373,6 +5436,8 @@ export namespace Prisma {
     OR?: ActivityScalarWhereWithAggregatesInput[]
     NOT?: ActivityScalarWhereWithAggregatesInput | ActivityScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Activity"> | string
+    startTime?: DateTimeWithAggregatesFilter<"Activity"> | Date | string
+    endTime?: DateTimeWithAggregatesFilter<"Activity"> | Date | string
     categoryId?: StringWithAggregatesFilter<"Activity"> | string
   }
 
@@ -5498,67 +5563,86 @@ export namespace Prisma {
 
   export type CategoryCreateInput = {
     id?: string
+    name: string
     user: UserCreateNestedOneWithoutCategoriesInput
     activities?: ActivityCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUncheckedCreateInput = {
     id?: string
+    name: string
     userId: string
     activities?: ActivityUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutCategoriesNestedInput
     activities?: ActivityUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     activities?: ActivityUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryCreateManyInput = {
     id?: string
+    name: string
     userId: string
   }
 
   export type CategoryUpdateManyMutationInput = {
-
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type CategoryUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ActivityCreateInput = {
     id?: string
+    startTime: Date | string
+    endTime: Date | string
     category: CategoryCreateNestedOneWithoutActivitiesInput
   }
 
   export type ActivityUncheckedCreateInput = {
     id?: string
+    startTime: Date | string
+    endTime: Date | string
     categoryId: string
   }
 
   export type ActivityUpdateInput = {
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutActivitiesNestedInput
   }
 
   export type ActivityUncheckedUpdateInput = {
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ActivityCreateManyInput = {
     id?: string
+    startTime: Date | string
+    endTime: Date | string
     categoryId: string
   }
 
   export type ActivityUpdateManyMutationInput = {
-
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ActivityUncheckedUpdateManyInput = {
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -5713,17 +5797,31 @@ export namespace Prisma {
 
   export type CategoryCountOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
   }
 
   export type CategoryMaxOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
   }
 
   export type CategoryMinOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type CategoryScalarRelationFilter = {
@@ -5733,17 +5831,37 @@ export namespace Prisma {
 
   export type ActivityCountOrderByAggregateInput = {
     id?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     categoryId?: SortOrder
   }
 
   export type ActivityMaxOrderByAggregateInput = {
     id?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     categoryId?: SortOrder
   }
 
   export type ActivityMinOrderByAggregateInput = {
     id?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     categoryId?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type IntNullableListFilter<$PrismaModel = never> = {
@@ -5959,6 +6077,10 @@ export namespace Prisma {
     connect?: CategoryWhereUniqueInput
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type CategoryUpdateOneRequiredWithoutActivitiesNestedInput = {
     create?: XOR<CategoryCreateWithoutActivitiesInput, CategoryUncheckedCreateWithoutActivitiesInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutActivitiesInput
@@ -6058,6 +6180,31 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -6087,11 +6234,13 @@ export namespace Prisma {
 
   export type CategoryCreateWithoutUserInput = {
     id?: string
+    name: string
     activities?: ActivityCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUncheckedCreateWithoutUserInput = {
     id?: string
+    name: string
     activities?: ActivityUncheckedCreateNestedManyWithoutCategoryInput
   }
 
@@ -6148,6 +6297,7 @@ export namespace Prisma {
     OR?: CategoryScalarWhereInput[]
     NOT?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
     id?: StringFilter<"Category"> | string
+    name?: StringFilter<"Category"> | string
     userId?: StringFilter<"Category"> | string
   }
 
@@ -6201,10 +6351,14 @@ export namespace Prisma {
 
   export type ActivityCreateWithoutCategoryInput = {
     id?: string
+    startTime: Date | string
+    endTime: Date | string
   }
 
   export type ActivityUncheckedCreateWithoutCategoryInput = {
     id?: string
+    startTime: Date | string
+    endTime: Date | string
   }
 
   export type ActivityCreateOrConnectWithoutCategoryInput = {
@@ -6262,16 +6416,20 @@ export namespace Prisma {
     OR?: ActivityScalarWhereInput[]
     NOT?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
     id?: StringFilter<"Activity"> | string
+    startTime?: DateTimeFilter<"Activity"> | Date | string
+    endTime?: DateTimeFilter<"Activity"> | Date | string
     categoryId?: StringFilter<"Activity"> | string
   }
 
   export type CategoryCreateWithoutActivitiesInput = {
     id?: string
+    name: string
     user: UserCreateNestedOneWithoutCategoriesInput
   }
 
   export type CategoryUncheckedCreateWithoutActivitiesInput = {
     id?: string
+    name: string
     userId: string
   }
 
@@ -6292,10 +6450,12 @@ export namespace Prisma {
   }
 
   export type CategoryUpdateWithoutActivitiesInput = {
+    name?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutCategoriesNestedInput
   }
 
   export type CategoryUncheckedUpdateWithoutActivitiesInput = {
+    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -6347,34 +6507,42 @@ export namespace Prisma {
 
   export type CategoryCreateManyUserInput = {
     id?: string
+    name: string
   }
 
   export type CategoryUpdateWithoutUserInput = {
+    name?: StringFieldUpdateOperationsInput | string
     activities?: ActivityUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryUncheckedUpdateWithoutUserInput = {
+    name?: StringFieldUpdateOperationsInput | string
     activities?: ActivityUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryUncheckedUpdateManyWithoutUserInput = {
-
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type ActivityCreateManyCategoryInput = {
     id?: string
+    startTime: Date | string
+    endTime: Date | string
   }
 
   export type ActivityUpdateWithoutCategoryInput = {
-
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ActivityUncheckedUpdateWithoutCategoryInput = {
-
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ActivityUncheckedUpdateManyWithoutCategoryInput = {
-
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
