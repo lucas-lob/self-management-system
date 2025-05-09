@@ -32,7 +32,7 @@ app.post('/users', async (req, res) => {
 
 
 // POMODORO ROUTERS
-app.get('/users/pomodoro/settings/:userId', async (req, res) => {
+app.get('/users/:userId/pomodoro-settings', async (req, res) => {
     const pomodoroSettings = await prisma.pomodoroSettings.findUnique({
         where: {
             userId: req.params.userId
@@ -42,7 +42,7 @@ app.get('/users/pomodoro/settings/:userId', async (req, res) => {
     res.status(200).json({ "Message": "Pomodoro settings obtained" })
 })
 
-app.put('/users/pomodoro/settings/:userId', async (req, res) => {
+app.put('/users/:userId/pomodoro-settings', async (req, res) => {
     await prisma.pomodoroSettings.update({
         where: {
             userId: req.params.userId
