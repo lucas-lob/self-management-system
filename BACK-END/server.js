@@ -77,6 +77,9 @@ app.get('/users/:userId/categories', async (req, res) => {
     const userCategories = await prisma.category.findMany({
         where: {
             userId: req.params.userId
+        }, 
+        select: {
+            name: true,
         }
     })
 
