@@ -14,6 +14,9 @@ const elementStatus = {
     UNUSABLE: "opacity-30 pointer-events-none"
 }
 
+
+
+// GLOBAL VARIABLES
 let timerSettings = {
     setIntervalID: 0,
     isInterval: false,
@@ -21,6 +24,9 @@ let timerSettings = {
     currentSection: 1,
 }
 
+
+
+// COMPONENTS
 const IconButton = ({ onClickListener, status, iconText, scale = iconScale.NORMAL }) => {
     return (
         <button type='button' className={`${status} text-primary hover:text-tertiary transition duration-300 ease-in-out `} onClick={onClickListener}>
@@ -70,6 +76,8 @@ export const Pomodoro = () => {
 
         }
     }, [userData])
+
+
 
     // TIMER FUNCTIONS
     function runTimer() {
@@ -178,7 +186,9 @@ export const Pomodoro = () => {
         setTimerValues(timerSettings.sectionDuration)
     }
 
-    // POPUPS FUNCTIONS
+
+
+    // SHOW POPUPS FUNCTIONS
     function showSettingsPopup() {
         setPopup(
             <PomodoroPopup popupID={1} closeButtonOnClickListener={() => { setPopup() }} />
@@ -194,6 +204,8 @@ export const Pomodoro = () => {
             <PomodoroPopup popupID={3} closeButtonOnClickListener={() => { setPopup() }} />
         )
     }
+
+
 
     return (
         <>
