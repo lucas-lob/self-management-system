@@ -67,7 +67,6 @@ export const Pomodoro = () => {
                     categories
                 })
             }
-
             fetchData()
 
         } else if (timerValues === null) {
