@@ -53,6 +53,8 @@ export const Pomodoro = () => {
         settingsButton: elementStatus.USABLE
     })
 
+
+
     useEffect(() => {
         if (userData === null) {
             async function fetchData() {
@@ -68,8 +70,13 @@ export const Pomodoro = () => {
 
             fetchData()
 
-        } else {
-
+        } else if (timerValues === null) {
+            console.log(userData)
+            setTimerValues({
+                hours: userData.userSettingsData.sectionDuration[0],
+                minutes: userData.userSettingsData.sectionDuration[1],
+                seconds: userData.userSettingsData.sectionDuration[2]
+            })
         }
 
         return () => {
@@ -124,16 +131,28 @@ export const Pomodoro = () => {
                             timerSettings.isInterval = false
                             timerSettings.currentSection++
 
-                            setTimerValues(timerSettings.sectionDuration)
+                            setTimerValues({
+                                hours: userData.userSettingsData.sectionDuration[0],
+                                minutes: userData.userSettingsData.sectionDuration[1],
+                                seconds: userData.userSettingsData.sectionDuration[2]
+                            })
                         } else {
                             timerSettings.isInterval = true
 
                             if (timerSettings.currentSection % timerSettings.longIntervalSection === 0) {
                                 // Is long interval
-                                setTimerValues(timerSettings.longIntervalDuration)
+                                setTimerValues({
+                                    hours: userData.userSettingsData.longIntervalDuration[0],
+                                    minutes: userData.userSettingsData.longIntervalDuration[1],
+                                    seconds: userData.userSettingsData.longIntervalDuration[2]
+                                })
                             } else {
                                 // Is short interval
-                                setTimerValues(timerSettings.shortIntervalDuration)
+                                setTimerValues({
+                                    hours: userData.userSettingsData.shortIntervalDuration[0],
+                                    minutes: userData.userSettingsData.shortIntervalDuration[1],
+                                    seconds: userData.userSettingsData.shortIntervalDuration[2]
+                                })
                             }
                         }
 
@@ -183,7 +202,11 @@ export const Pomodoro = () => {
             stopButton: elementStatus.UNUSABLE,
             settingsButton: elementStatus.USABLE
         })
-        setTimerValues(timerSettings.sectionDuration)
+        setTimerValues({
+            hours: userData.userSettingsData.sectionDuration[0],
+            minutes: userData.userSettingsData.sectionDuration[1],
+            seconds: userData.userSettingsData.sectionDuration[2]
+        })
     }
 
 
@@ -210,7 +233,7 @@ export const Pomodoro = () => {
     return (
         <>
             {
-                userData === null ?
+                userData === null || timerValues === null ?
                     <div className="absolute left-[50%] top-[50%] translate-[-50%]">
                         <p className='text-big text-primary'>Carregando</p>
                     </div>
