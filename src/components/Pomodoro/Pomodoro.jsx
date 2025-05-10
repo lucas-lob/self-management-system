@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { PomodoroPopup } from '../PomodoroPopup/PomodoroPopup.jsx'
 
@@ -14,6 +14,13 @@ const elementStatus = {
     UNUSABLE: "opacity-30 pointer-events-none"
 }
 
+let timerSettings = {
+    setIntervalID: 0,
+    isInterval: false,
+    isPause: false,
+    currentSection: 1,
+}
+
 const IconButton = ({ onClickListener, status, iconText, scale = iconScale.NORMAL }) => {
     return (
         <button type='button' className={`${status} text-primary hover:text-tertiary transition duration-300 ease-in-out `} onClick={onClickListener}>
@@ -24,33 +31,12 @@ const IconButton = ({ onClickListener, status, iconText, scale = iconScale.NORMA
     )
 }
 
-let timerSettings = {
-    sectionDuration: {
-        hours: 0,
-        minutes: 0,
-        seconds: 5
-    },
-    shortIntervalDuration: {
-        hours: 0,
-        minutes: 0,
-        seconds: 5
-    },
-    longIntervalDuration: {
-        hours: 0,
-        minutes: 0,
-        seconds: 6
-    },
-    setIntervalID: 0,
-    isInterval: false,
-    isPause: false,
-    currentSection: 1,
-    longIntervalSection: 3
-}
-
 export const Pomodoro = () => {
     const [popup, setPopup] = useState(<></>)
 
-    const [timerValues, setTimerValues] = useState(timerSettings.sectionDuration)
+    const [userData, setUserData] = useState(null)
+
+    const [timerValues, setTimerValues] = useState(null)
 
     const [elementsStatus, setElementsStatus] = useState({
         timer: elementStatus.UNUSABLE,
@@ -60,6 +46,30 @@ export const Pomodoro = () => {
         stopButton: elementStatus.UNUSABLE,
         settingsButton: elementStatus.USABLE
     })
+
+    useEffect(() => {
+        if (userData === null) {
+            async function fetchData() {
+                let userSettingsData = await fetch("http://localhost:3000/users/681e27acde2792bfacf6e328/pomodoro-settings").then(response => response.json())
+
+                let userCategoriesData = await fetch("http://localhost:3000/users/681e27acde2792bfacf6e328/categories").then(response => response.json())
+
+                setUserData({
+                    userSettingsData,
+                    userCategoriesData
+                })
+            }
+
+            fetchData()
+
+        } else {
+
+        }
+
+        return () => {
+
+        }
+    }, [userData])
 
     // TIMER FUNCTIONS
     function runTimer() {
