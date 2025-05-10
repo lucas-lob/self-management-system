@@ -71,7 +71,6 @@ export const Pomodoro = () => {
             fetchData()
 
         } else if (timerValues === null) {
-            console.log(userData)
             setTimerValues({
                 hours: userData.settings.sectionDuration[0],
                 minutes: userData.settings.sectionDuration[1],
