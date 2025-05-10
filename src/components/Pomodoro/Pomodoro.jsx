@@ -171,17 +171,17 @@ export const Pomodoro = () => {
     // POPUPS FUNCTIONS
     function showSettingsPopup() {
         setPopup(
-            <PomodoroPopup popupID={1} closeButtonOnClickListener={() => {setPopup()}} />
+            <PomodoroPopup popupID={1} closeButtonOnClickListener={() => { setPopup() }} />
         )
     }
     function showSelectionPopupWithoutAlert() {
         setPopup(
-            <PomodoroPopup popupID={2} closeButtonOnClickListener={() => {setPopup()}} />
+            <PomodoroPopup popupID={2} closeButtonOnClickListener={() => { setPopup() }} />
         )
     }
     function showSelectionPopupWithAlert() {
         setPopup(
-            <PomodoroPopup popupID={3} closeButtonOnClickListener={() => {setPopup()}} />
+            <PomodoroPopup popupID={3} closeButtonOnClickListener={() => { setPopup() }} />
         )
     }
 
@@ -193,11 +193,11 @@ export const Pomodoro = () => {
                 {timerSettings.isPause && <h1 className='mb-xl text-big'> Pausado </h1>}
 
                 <div className={`flex text-[50px] sm:text-[75px] lg:text-[100px] xl:text-[150px] text-primary ${elementsStatus.timer}`}>
-                    {timerValues.hours < 9 ? <h1> 0{timerValues.hours}: </h1> : <h1> {timerValues.hours}: </h1>} 
+                    {timerValues.hours < 9 ? <h1> 0{timerValues.hours}: </h1> : <h1> {timerValues.hours}: </h1>}
 
-                    {timerValues.minutes < 9 ? <h1> 0{timerValues.minutes}: </h1> : <h1> {timerValues.minutes}: </h1>}  
+                    {timerValues.minutes < 9 ? <h1> 0{timerValues.minutes}: </h1> : <h1> {timerValues.minutes}: </h1>}
 
-                    {timerValues.seconds < 9 ? <h1> 0{timerValues.seconds} </h1> : <h1> {timerValues.seconds} </h1>} 
+                    {timerValues.seconds < 9 ? <h1> 0{timerValues.seconds} </h1> : <h1> {timerValues.seconds} </h1>}
                 </div>
 
                 <div className={`flex mb-xl text-small md:text-medium text-primary ${elementsStatus.section}`}>
