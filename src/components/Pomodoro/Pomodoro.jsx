@@ -58,13 +58,13 @@ export const Pomodoro = () => {
     useEffect(() => {
         if (userData === null) {
             async function fetchData() {
-                let userSettingsData = await fetch("http://localhost:3000/users/681e27acde2792bfacf6e328/pomodoro-settings").then(response => response.json())
+                let settings = await fetch("http://localhost:3000/users/681e27acde2792bfacf6e328/pomodoro-settings").then(response => response.json())
 
-                let userCategoriesData = await fetch("http://localhost:3000/users/681e27acde2792bfacf6e328/categories").then(response => response.json())
+                let categories = await fetch("http://localhost:3000/users/681e27acde2792bfacf6e328/categories").then(response => response.json())
 
                 setUserData({
-                    userSettingsData,
-                    userCategoriesData
+                    settings,
+                    categories
                 })
             }
 
@@ -73,9 +73,9 @@ export const Pomodoro = () => {
         } else if (timerValues === null) {
             console.log(userData)
             setTimerValues({
-                hours: userData.userSettingsData.sectionDuration[0],
-                minutes: userData.userSettingsData.sectionDuration[1],
-                seconds: userData.userSettingsData.sectionDuration[2]
+                hours: userData.settings.sectionDuration[0],
+                minutes: userData.settings.sectionDuration[1],
+                seconds: userData.settings.sectionDuration[2]
             })
         }
 
@@ -132,9 +132,9 @@ export const Pomodoro = () => {
                             timerSettings.currentSection++
 
                             setTimerValues({
-                                hours: userData.userSettingsData.sectionDuration[0],
-                                minutes: userData.userSettingsData.sectionDuration[1],
-                                seconds: userData.userSettingsData.sectionDuration[2]
+                                hours: userData.settings.sectionDuration[0],
+                                minutes: userData.settings.sectionDuration[1],
+                                seconds: userData.settings.sectionDuration[2]
                             })
                         } else {
                             timerSettings.isInterval = true
@@ -142,16 +142,16 @@ export const Pomodoro = () => {
                             if (timerSettings.currentSection % timerSettings.longIntervalSection === 0) {
                                 // Is long interval
                                 setTimerValues({
-                                    hours: userData.userSettingsData.longIntervalDuration[0],
-                                    minutes: userData.userSettingsData.longIntervalDuration[1],
-                                    seconds: userData.userSettingsData.longIntervalDuration[2]
+                                    hours: userData.settings.longIntervalDuration[0],
+                                    minutes: userData.settings.longIntervalDuration[1],
+                                    seconds: userData.settings.longIntervalDuration[2]
                                 })
                             } else {
                                 // Is short interval
                                 setTimerValues({
-                                    hours: userData.userSettingsData.shortIntervalDuration[0],
-                                    minutes: userData.userSettingsData.shortIntervalDuration[1],
-                                    seconds: userData.userSettingsData.shortIntervalDuration[2]
+                                    hours: userData.settings.shortIntervalDuration[0],
+                                    minutes: userData.settings.shortIntervalDuration[1],
+                                    seconds: userData.settings.shortIntervalDuration[2]
                                 })
                             }
                         }
@@ -203,9 +203,9 @@ export const Pomodoro = () => {
             settingsButton: elementStatus.USABLE
         })
         setTimerValues({
-            hours: userData.userSettingsData.sectionDuration[0],
-            minutes: userData.userSettingsData.sectionDuration[1],
-            seconds: userData.userSettingsData.sectionDuration[2]
+            hours: userData.settings.sectionDuration[0],
+            minutes: userData.settings.sectionDuration[1],
+            seconds: userData.settings.sectionDuration[2]
         })
     }
 
